@@ -53,8 +53,8 @@ func (app *Config) authenticate(w http.ResponseWriter, a AuthPayload) {
 	// create some json we'll send to auth microservice
 	jsonData, _ := json.MarshalIndent(a, "", "\t")
 
-	//call the service
-	request, err := http.NewRequest("POST", "http://authentication-service/authenticate", bytes.NewBuffer(jsonData))
+	//call the service (service yang dimaksud adalah yang ada di folder auth-service folder)
+	request, err := http.NewRequest("POST", "http://auth-service/authenticate", bytes.NewBuffer(jsonData))
 	if err != nil {
 		app.errorJSON(w, err)
 		return
