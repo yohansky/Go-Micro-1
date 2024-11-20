@@ -12,10 +12,11 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+// port mongo harus sama dengan defaultnya (27017) walaupun declare di dockernya beda
 const (
 	webPort  = "80"
 	rpcPort  = "5001"
-	mongoURL = "mongodb://mongo:27018"
+	mongoURL = "mongodb://mongo:27017"
 	grpcPort = "50001"
 )
 
