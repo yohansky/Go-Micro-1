@@ -20,6 +20,7 @@ func main() {
 		log.Println("Connected to RabbitMQ")
 	}
 	defer rabbitConn.Close()
+
 	// start listening fo messages
 
 	// create consumer
