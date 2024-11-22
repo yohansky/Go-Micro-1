@@ -15,7 +15,7 @@ type Consumer struct {
 	queueName string
 }
 
-func NewCOnsumer(conn *amqp.Connection) (Consumer, error) {
+func NewConsumer(conn *amqp.Connection) (Consumer, error) {
 	consumer := Consumer{
 		conn: conn,
 	}
@@ -39,7 +39,7 @@ func (consumer *Consumer) setup() error {
 
 type Payload struct {
 	Name string `json:"name"`
-	Data string `json"data"`
+	Data string `json:"data"`
 }
 
 func (consumer *Consumer) Listen(topics []string) error {
@@ -58,18 +58,19 @@ func (consumer *Consumer) Listen(topics []string) error {
 		ch.QueueBind(
 			q.Name,
 			s,
-			"logs_topics",
+			"logs_topic",
 			false,
 			nil,
 		)
-	}
 
-	if err != nil {
-		return err
+		if err != nil {
+			return err
+		}
 	}
 
 	messages, err := ch.Consume(q.Name, "", true, false, false, false, nil)
 	if err != nil {
+		fmt.Println("error di Consume")
 		return err
 	}
 
